@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     mode: 'development',
     module: {
         rules: [
@@ -17,13 +17,13 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.ts|tsx?$/,
+                test: /\.(ts|tsx)$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
             },
         ],
     },
-    resolve: { extensions: ['*', '.js', '.jsx', 'ts', 'tsx'] },
+    resolve: { extensions: ['*', '.js', '.jsx', '.ts', '.tsx'] },
     output: {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: '/dist/',
@@ -34,6 +34,7 @@ module.exports = {
             directory: path.join(__dirname, 'public'),
         },
         port: 3001,
+        historyApiFallback: true,
     },
     plugins: [new webpack.HotModuleReplacementPlugin()],
 };
